@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react';
 import baseUrl from '../requests/api';
 import './Row.css';
 
-function Row({ title, fetchUrl }) {
+function Row({ title, fetchUrl, isLarge }) {
     const url = "https://image.tmdb.org/t/p/original/";
 
     const [movies, setMovies] = useState([]);
@@ -20,7 +20,7 @@ function Row({ title, fetchUrl }) {
             <h1>{title}</h1>
             <div className="row_posters">
                 {movies.map(movie => (
-                    <img key={movie.id} className="row_poster" src={`${url}${movie.poster_path}`} alt={movie.name} />
+                    <img key={movie.id} className={`row_poster ${isLarge && "row_posterLarge"}`} src={`${url}${isLarge ? movie.poster_path : movie.backdrop_path}`} alt={movie.name} />
                 )
                 )}
             </div>
